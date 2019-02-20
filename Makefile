@@ -6,7 +6,7 @@
 #    By: voksenui <voksenui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/20 06:29:23 by voksenui          #+#    #+#              #
-#    Updated: 2019/02/20 08:05:08 by voksenui         ###   ########.fr        #
+#    Updated: 2019/02/20 21:52:10 by voksenui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = voksenui.filler
 
 LIB		=	ft_printf/
 
-LIB_HDR	=	$(LIB)hdr/
+LIB_HDR	=	$(LIB)
 
 SRC		=	filler.c \
 			alg_filler.c \

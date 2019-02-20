@@ -6,7 +6,7 @@
 /*   By: voksenui <voksenui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 13:59:49 by voksenui          #+#    #+#             */
-/*   Updated: 2019/02/20 08:10:53 by voksenui         ###   ########.fr       */
+/*   Updated: 2019/02/20 21:58:55 by voksenui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ typedef struct s_np
 	int			count;
 }				t_np;
 
-void			write_piece(t_filler f, t_np o);
+int			write_piece(t_filler f, t_np o);
 void			alg_filler(t_filler f);
 # endif

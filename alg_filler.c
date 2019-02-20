@@ -6,7 +6,7 @@
 /*   By: voksenui <voksenui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 21:34:32 by voksenui          #+#    #+#             */
-/*   Updated: 2019/02/20 07:59:03 by voksenui         ###   ########.fr       */
+/*   Updated: 2019/02/20 21:29:03 by voksenui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ static int		c_piece(t_filler f)
 	while (f.piece[++y])
 	{
 		x = -1;
-		while (f.piece[y][+x])
-			f.piece[y][x] == '*' ? count++ : 0;
+		while (f.piece[y][++x])
+			if (f.piece[y][x] == '*')
+				count++;
 	}
 	return (count);
 }
@@ -46,12 +47,10 @@ static int		ch_piece(t_filler f, int y, int x, int *pos)
 		{
 			s_y = y + i;
 			c_x = x + j;
-			if (f.piece[i][j] == '*' && s_y >= 0 && c_x >= 0
-				&& s_y < f.cm.y && c_x < f.cm.x && f.maps[s_y][c_x] != f.bt
-				&& (f.maps[s_y][c_x] == f.me || f.maps[s_y][c_x] == '.')
-				&& (++v_piece))
-				if (f.maps[s_y][c_x] == f.me
-					|| f.maps[s_y][c_x] == (f.me - 32))
+			if (f.piece[i][j] == '*' && s_y >= 0 && c_x >= 0 && s_y < f.cm.y\
+			&& c_x < f.cm.x && f.maps[s_y][c_x] != f.bt	&& \
+			(f.maps[s_y][c_x] == '.' || f.maps[s_y][c_x] == f.me) && (++v_piece))
+				if (f.maps[s_y][c_x] == f.me || f.maps[s_y][c_x] == (f.me - 32))
 					(*pos)++;
 		}
 	}
@@ -70,7 +69,7 @@ static void		add_np(t_filler f, t_np *o)
 	while (y < f.cm.y)
 	{
 		x = -f.cp.x;
-		while (x < f.cm.y)
+		while (x < f.cm.x)
 		{
 			pos = 0;
 			if (cnt == ch_piece(f, y, x, &pos) && pos == 1)
@@ -87,7 +86,7 @@ void			alg_filler(t_filler f)
 {
 	t_np	o;
 
-	o.count = -1;
+	o.count = 0;
 	o.nmap = ft_memalloc(sizeof(t_map) * (f.cm.x * f.cm.y * 2 + 1));
 	add_np(f, &o);
 	write_piece(f, o);

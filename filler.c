@@ -6,7 +6,7 @@
 /*   By: voksenui <voksenui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 22:10:42 by voksenui          #+#    #+#             */
-/*   Updated: 2019/02/20 08:29:25 by voksenui         ###   ########.fr       */
+/*   Updated: 2019/02/20 21:43:35 by voksenui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int				main(void)
 	char		*line;
 	t_filler	f;
 
-	ft_bzero(&f, sizeof(t_filler));
+	ft_bzero(&f, sizeof(f));
 	while ((get_next_line(0, &line)) > 0)
 	{
 		if (ft_strstr(line, "Plateau "))
@@ -82,7 +82,7 @@ int				main(void)
 			piece(line, &f);
 			alg_filler(f);
 		}
-		else if (ft_strstr(line, "./voksenui.filler"))
+		else if (ft_strstr(line, "voksenui.filler"))
 		{
 			f.me = line[10] == '1' ? 'O' : 'X';
 			f.bt = f.me == 'X' ? 'O' : 'X';
