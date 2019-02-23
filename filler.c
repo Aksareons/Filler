@@ -6,41 +6,41 @@
 /*   By: voksenui <voksenui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 22:10:42 by voksenui          #+#    #+#             */
-/*   Updated: 2019/02/20 21:43:35 by voksenui         ###   ########.fr       */
+/*   Updated: 2019/02/23 13:45:13 by voksenui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void		piece(char *tmp, t_filler *f)
+static void			filler_piece(char *tmp, t_filler *f)
 {
 	char		*line;
 	int			i;
 
 	i = 0;
-	f->cp.x = 0;
-	f->cp.y = 0;
+	f->t_x = 0;
+	f->t_y = 0;
 	while (tmp[i] && !ft_isdigit(tmp[i]))
 		i++;
 	while (tmp[i] && tmp[i] != ' ')
-		f->cp.y = f->cp.y * 10 + tmp[i++] - '0';
+		f->t_y = f->t_y * 10 + tmp[i++] - '0';
 	i++;
 	while (tmp[i] && tmp[i] != ':')
-		f->cp.x = f->cp.x * 10 + tmp[i++] - '0';
-	if (f->piece != NULL)
+		f->t_x = f->t_x * 10 + tmp[i++] - '0';
+	if (f->elm != NULL)
 	{
 		i = 0;
-		while (f->piece[i] != NULL)
-			free(f->piece[i++]);
-		free(f->piece);
+		while (f->elm[i] != NULL)
+			free(f->elm[i++]);
+		free(f->elm);
 	}
-	f->piece = (char **)ft_memalloc(sizeof(char *) * (f->cp.y + 1));
+	f->elm = (char **)ft_memalloc(sizeof(char *) * (f->t_y + 1));
 	i = 0;
-	while (i < f->cp.y && get_next_line(0, &line) > 0)
-		f->piece[i++] = line;
+	while (i < f->t_y && get_next_line(0, &line) > 0)
+		f->elm[i++] = line;
 }
 
-static void		maps(char *tmp, t_filler *f)
+static void			filler_map(char *tmp, t_filler *f)
 {
 	char		*line;
 	int			i;
@@ -51,11 +51,11 @@ static void		maps(char *tmp, t_filler *f)
 		while (tmp[i] && !ft_isdigit(tmp[i]))
 			i++;
 		while (tmp[i] && tmp[i] != ' ')
-			f->cm.y = f->cm.y * 10 + tmp[i++] - '0';
+			f->m_y = f->m_y * 10 + tmp[i++] - '0';
 		i++;
 		while (tmp[i] && tmp[i] != ':')
-			f->cm.x = f->cm.x * 10 + tmp[i++] - '0';
-		f->maps = (char **)ft_memalloc(sizeof(char *) * (f->cm.y + 2));
+			f->m_x = f->m_x * 10 + tmp[i++] - '0';
+		f->maps = (char **)ft_memalloc(sizeof(char *) * (f->m_y + 2));
 	}
 	else
 		while (f->maps[i] != NULL)
@@ -63,7 +63,7 @@ static void		maps(char *tmp, t_filler *f)
 	i = 0;
 	if (get_next_line(0, &line) > 0)
 		free(line);
-	while (i < f->cm.y && get_next_line(0, &line) > 0)
+	while (i < f->m_y && get_next_line(0, &line) > 0)
 		f->maps[i++] = line + 4;
 }
 
@@ -76,16 +76,16 @@ int				main(void)
 	while ((get_next_line(0, &line)) > 0)
 	{
 		if (ft_strstr(line, "Plateau "))
-			maps(line, &f);
+			filler_map(line, &f);
 		else if (ft_strstr(line, "Piece "))
 		{
-			piece(line, &f);
+			filler_piece(line, &f);
 			alg_filler(f);
 		}
 		else if (ft_strstr(line, "voksenui.filler"))
 		{
-			f.me = line[10] == '1' ? 'O' : 'X';
-			f.bt = f.me == 'X' ? 'O' : 'X';
+			f.p_1 = line[10] == '1' ? 'O' : 'X';
+			f.p_2 = f.p_1 == 'X' ? 'O' : 'X';
 		}
 		free(line);
 	}
