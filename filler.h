@@ -6,33 +6,37 @@
 /*   By: voksenui <voksenui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 13:59:49 by voksenui          #+#    #+#             */
-/*   Updated: 2019/03/12 17:47:25 by voksenui         ###   ########.fr       */
+/*   Updated: 2019/03/12 17:52:00 by voksenui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FILLER_H
 # define FILLER_H
 
 # include "ft_printf/ft_printf.h"
 
+typedef struct s_map
+{
+	int			x;
+	int			y;
+}				t_map;
+
 typedef struct s_filler
 {
-	char		p_1;
-	char		p_2;
-	int			nmap[2];
-	int			save[2];
-	int			m_y;
-	int			m_x;
-	int			t_y;
-	int			t_x;
-	int			nm_y;
-	int			nm_x;
-	char		**elm;
+	char		me;
+	char		bt;
+	char		**piece;
 	char		**maps;
+	t_map		cm;
+	t_map		cp;
 }				t_filler;
- 
 
-int				write_piece(t_filler f, int **nmap, int ct);
+typedef struct s_np
+{
+	t_map		*nmap;
+	int			count;
+}				t_np;
+
+int			write_piece(t_filler f, t_np o);
 void			alg_filler(t_filler f);
 # endif

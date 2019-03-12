@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-seed = 6013
-./voksenui.filler won
+seed = 5027
+./resources/players/carli.filler won
 Score:
-71AGAINST262
-=======
-seed = 6822
-O: error on input
-./voksenui.filler: Segfault at 0
->>>>>>> 7da96e944da12639067d1e08999efaca366c19c3
+193AGAINST131

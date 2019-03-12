@@ -6,7 +6,7 @@
 /*   By: voksenui <voksenui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 07:08:15 by voksenui          #+#    #+#             */
-/*   Updated: 2019/03/12 17:47:23 by voksenui         ###   ########.fr       */
+/*   Updated: 2019/03/12 19:03:27 by voksenui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ static int		field_length(t_filler f, t_np o, int iter, int	*range)
 		while (++x < f.cm.x)
 			if (f.maps[y][x] == f.bt)
 			{
-				res = (ft_module(x - o.nmap[iter].x) + ft_module(y - o.nmap[iter].y));
-				if (res < *range && (++end))
+				res = ft_module(x - o.nmap[iter].x) + ft_module(y - o.nmap[iter].y);
+				if (res < *range && ++end)
 					*range = res;
 			}
+	
 	}
-	return (end);
+		return (end);
 }
 int		write_piece(t_filler f, t_np o)
 {
